@@ -1,5 +1,5 @@
 # Bags-Practice-OOP
-
+https://katalyst.codurance.com/bags
 ## Rules
 Durance has 1 backpack and 4 extra bags
 Each bag has a capacity of 4 items, the backpack has a capacity of 8 items
