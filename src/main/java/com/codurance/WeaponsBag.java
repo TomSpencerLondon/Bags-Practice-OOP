@@ -9,6 +9,8 @@ import java.util.List;
 public class WeaponsBag implements Bag {
   List<String> items = new ArrayList<>();
   private int position = 4;
+  List<String> weaponItems = List.of("Axe", "Dagger", "Mace", "Sword");
+
 
   @Override
   public List<String> items() {
@@ -40,7 +42,14 @@ public class WeaponsBag implements Bag {
   }
 
   @Override
+  public boolean include(String item) {
+    return weaponItems.contains(item);
+  }
+
+  @Override
   public int compareTo(Bag bag) {
     return this.position - bag.position();
   }
+
+
 }

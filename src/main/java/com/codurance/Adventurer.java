@@ -54,6 +54,5 @@ public class Adventurer {
   }
 
   public void organiseSpell() {
-
   }
 }

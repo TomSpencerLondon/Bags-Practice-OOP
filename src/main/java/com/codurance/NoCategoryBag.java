@@ -16,6 +16,11 @@ public class NoCategoryBag implements Bag {
   }
 
   @Override
+  public boolean include(String item) {
+    return false;
+  }
+
+  @Override
   public List<String> items() {
     throw new UnsupportedOperationException("Implement me!");
   }

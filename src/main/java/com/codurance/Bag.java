@@ -7,4 +7,5 @@ public interface Bag extends Comparable<Bag> {
   public void add(String item);
   public boolean countOfItemsWithin(int count);
   public int position();
+  public boolean include(String item);
 }

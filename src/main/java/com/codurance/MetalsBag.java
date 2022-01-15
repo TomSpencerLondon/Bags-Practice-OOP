@@ -9,6 +9,7 @@ import java.util.List;
 public class MetalsBag implements Bag {
   private int position = 2;
   List<String> items = new ArrayList<>();
+  List<String> metalItems = List.of("Copper", "Gold", "Iron", "Silver");
 
   public int position() {
     return position;
@@ -41,5 +42,9 @@ public class MetalsBag implements Bag {
   @Override
   public int compareTo(Bag bag) {
     return this.position - bag.position();
+  }
+
+  public boolean include(String item) {
+    return metalItems.contains(item);
   }
 }

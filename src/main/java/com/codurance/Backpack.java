@@ -28,6 +28,11 @@ public class Backpack implements Bag {
   }
 
   @Override
+  public boolean include(String item) {
+    return false;
+  }
+
+  @Override
   public boolean equals(Object other) {
     return reflectionEquals(this, other);
   }
