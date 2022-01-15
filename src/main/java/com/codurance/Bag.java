@@ -1,5 +1,8 @@
 package com.codurance;
 
-public interface Bag {
+import java.util.List;
 
+public interface Bag {
+  List<String> items();
+  public void add(String item);
 }

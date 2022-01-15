@@ -1,5 +1,33 @@
 package com.codurance;
 
-public class Backpack implements Bag {
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class Backpack implements Bag {
+  List<String> items = new ArrayList<>();
+  public void add(String item) {
+    items.add(item);
+  }
+
+  @Override
+  public List<String> items() {
+    return items;
+  }
+
+  public boolean countOfItemsWithin(int count) {
+    return items.size() < count;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    return reflectionEquals(this, other);
+  }
+
+  @Override
+  public int hashCode() {
+    return reflectionHashCode(this);
+  }
 }
