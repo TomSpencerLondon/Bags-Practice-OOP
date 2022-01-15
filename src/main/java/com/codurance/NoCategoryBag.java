@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NoCategoryBag implements Bag {
+
   List<String> items = new ArrayList<>();
+  private int position = 3;
+
+  public int position() {
+    return position;
+  }
 
   @Override
   public List<String> items() {
@@ -27,5 +33,14 @@ public class NoCategoryBag implements Bag {
   @Override
   public int hashCode() {
     return reflectionHashCode(this);
+  }
+
+  public boolean countOfItemsWithin(int count) {
+    return items.size() < count;
+  }
+
+  @Override
+  public int compareTo(Bag bag) {
+    return this.position - bag.position();
   }
 }

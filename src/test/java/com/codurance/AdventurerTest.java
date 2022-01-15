@@ -29,7 +29,7 @@ public class AdventurerTest {
     assertThat(inventory.get(3))
         .isInstanceOf(WeaponsBag.class);
     assertThat(inventory.get(4))
-        .isInstanceOf(NoCategoryBag.class);
+        .isInstanceOf(NoCategoryBag2.class);
   }
 
   @Test
@@ -45,11 +45,64 @@ public class AdventurerTest {
   }
 
   @Test
-  void addNineItemsIncludesTenInBackpackAndTwoInMetalsBag() {
+  void addTenItemsIncludesEightInBackpackAndTwoInMetalsBag() {
     // Given
     final Adventurer adventurer = new Adventurer();
     adventurer.add("Leather", "Iron", "Copper", "Marigold", "Wool", "Gold", "Silk", "Copper", "Copper", "Cherry Blossom");
 
+    final Backpack backpack = createBackPack();
+
+    final MetalsBag metalsBag = new MetalsBag();
+    metalsBag.add("Copper");
+    metalsBag.add("Cherry Blossom");
+
+    List<Bag> result = List.of(backpack, metalsBag, new NoCategoryBag(), new WeaponsBag(), new NoCategoryBag2());
+
+    // When
+    final List<Bag> inventory = adventurer.viewInventory();
+
+    // Then
+    assertThat(inventory)
+        .containsAll(result);
+  }
+
+  @Test
+  void ThirteenItemsIncludesEightInBackpackFourInMetalsBagAndOneInBagWithNoCategory() {
+    // Given
+    final Adventurer adventurer = new Adventurer();
+    adventurer.add(
+        "Leather", "Iron", "Copper",
+        "Marigold", "Wool", "Gold",
+        "Silk", "Copper", "Copper",
+        "Cherry Blossom", "Marigold", "Rose",
+        "Seaweed");
+
+    final Backpack backpack = createBackPack();
+
+    final MetalsBag metalsBag = new MetalsBag();
+    metalsBag.add("Copper");
+    metalsBag.add("Cherry Blossom");
+    metalsBag.add("Marigold");
+    metalsBag.add("Rose");
+
+    final NoCategoryBag noCategoryBag = new NoCategoryBag();
+    noCategoryBag.add("Seaweed");
+
+    List<Bag> result = List.of(
+        backpack, metalsBag,
+        noCategoryBag, new WeaponsBag(),
+        new NoCategoryBag2());
+
+    // When
+    final List<Bag> inventory = adventurer.viewInventory();
+
+    // Then
+    assertThat(inventory)
+        .containsAll(result);
+
+  }
+
+  private Backpack createBackPack() {
     final Backpack backpack = new Backpack();
     backpack.add("Leather");
     backpack.add("Iron");
@@ -59,16 +112,6 @@ public class AdventurerTest {
     backpack.add("Gold");
     backpack.add("Silk");
     backpack.add("Copper");
-
-    final MetalsBag metalsBag = new MetalsBag();
-    metalsBag.add("Copper");
-    metalsBag.add("Cherry Blossom");
-
-    List<Bag> result = List.of(backpack, metalsBag, new NoCategoryBag(), new WeaponsBag(), new NoCategoryBag());
-
-    // When
-    final List<Bag> inventory = adventurer.viewInventory();
-    assertThat(inventory)
-        .containsAll(result);
+    return backpack;
   }
 }

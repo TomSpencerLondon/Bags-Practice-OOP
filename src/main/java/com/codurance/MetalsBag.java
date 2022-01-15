@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MetalsBag implements Bag {
+  private int position = 2;
   List<String> items = new ArrayList<>();
+
+  public int position() {
+    return position;
+  }
 
   @Override
   public List<String> items() {
@@ -27,5 +32,14 @@ public class MetalsBag implements Bag {
   @Override
   public int hashCode() {
     return reflectionHashCode(this);
+  }
+
+  public boolean countOfItemsWithin(int count) {
+    return items.size() < count;
+  }
+
+  @Override
+  public int compareTo(Bag bag) {
+    return this.position - bag.position();
   }
 }

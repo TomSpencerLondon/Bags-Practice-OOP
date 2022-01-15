@@ -1,14 +1,20 @@
 package com.codurance;
 
+
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeaponsBag implements Bag {
+public class NoCategoryBag2 implements Bag {
+  private int position = 5;
+
   List<String> items = new ArrayList<>();
-  private int position = 4;
+
+  public int position() {
+    return position;
+  }
 
   @Override
   public List<String> items() {
@@ -32,11 +38,6 @@ public class WeaponsBag implements Bag {
 
   public boolean countOfItemsWithin(int count) {
     return items.size() < count;
-  }
-
-  @Override
-  public int position() {
-    return this.position;
   }
 
   @Override

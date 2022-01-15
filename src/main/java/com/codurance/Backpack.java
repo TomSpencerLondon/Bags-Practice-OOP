@@ -11,6 +11,7 @@ public class Backpack implements Bag {
   public void add(String item) {
     items.add(item);
   }
+  private int position = 1;
 
   @Override
   public List<String> items() {
@@ -22,6 +23,11 @@ public class Backpack implements Bag {
   }
 
   @Override
+  public int position() {
+    return this.position;
+  }
+
+  @Override
   public boolean equals(Object other) {
     return reflectionEquals(this, other);
   }
@@ -29,5 +35,10 @@ public class Backpack implements Bag {
   @Override
   public int hashCode() {
     return reflectionHashCode(this);
+  }
+
+  @Override
+  public int compareTo(Bag bag) {
+    return this.position - bag.position();
   }
 }
