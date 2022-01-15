@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MetalsBag implements Bag {
@@ -46,5 +47,9 @@ public class MetalsBag implements Bag {
 
   public boolean include(String item) {
     return metalItems.contains(item);
+  }
+
+  public void sort() {
+    Collections.sort(items);
   }
 }

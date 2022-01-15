@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WeaponsBag implements Bag {
@@ -14,7 +15,7 @@ public class WeaponsBag implements Bag {
 
   @Override
   public List<String> items() {
-    throw new UnsupportedOperationException("Implement me!");
+    return items;
   }
 
   @Override
@@ -52,4 +53,7 @@ public class WeaponsBag implements Bag {
   }
 
 
+  public void sort() {
+    Collections.sort(items);
+  }
 }
