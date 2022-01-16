@@ -66,6 +66,33 @@ public class Adventurer {
   }
 
   public void organizeSpell() {
+    List<String> reversedItems = reversedItems();
+    sortWeaponsAndMetals(reversedItems);
+    add(reversedItems.toArray(new String[0]));
+    sortItems();
+  }
+
+  private void sortWeaponsAndMetals(List<String> reversedItems) {
+    for (Bag bag : bags.keySet()) {
+      bag.emptyBag();
+      for (int i = 0; i < reversedItems.size(); i++) {
+        String item = reversedItems.get(i);
+        if (bag.include(item) && bag.countOfItemsWithin(4)) {
+          bag.add(item);
+          reversedItems.remove(i);
+          i--;
+        }
+      }
+    }
+  }
+
+  private void sortItems() {
+    for (Entry<Bag, Integer> entry : bags.entrySet()) {
+      entry.getKey().sort();
+    }
+  }
+
+  private List<String> reversedItems() {
     List<Bag> allBags = bags
         .keySet()
         .stream().toList();
@@ -77,23 +104,6 @@ public class Adventurer {
     }
 
     Collections.reverse(allItems);
-
-    for (Bag bag : bags.keySet()) {
-      bag.emptyBag();
-      for (int i = 0; i < allItems.size(); i++) {
-        String item = allItems.get(i);
-        if (bag.include(item) && bag.countOfItemsWithin(4)) {
-          bag.add(item);
-          allItems.remove(i);
-          i--;
-        }
-      }
-    }
-
-    add(allItems.toArray(new String[0]));
-
-    for (Entry<Bag, Integer> entry : bags.entrySet()) {
-      entry.getKey().sort();
-    }
+    return allItems;
   }
 }
