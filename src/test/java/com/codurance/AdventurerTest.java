@@ -103,7 +103,7 @@ public class AdventurerTest {
   }
 
   @Test
-  void organizeSpellSortsItemsInCorrectBags() {
+  void organizeSpellSortsItemsWithMetalsInCorrectBags() {
     // Given
     final Adventurer adventurer = new Adventurer();
     adventurer.add(
@@ -137,6 +137,50 @@ public class AdventurerTest {
             metalsBag,
             new NoCategoryBag(),
             new WeaponsBag(),
+            new NoCategoryBag2());
+  }
+
+  @Test
+  void organizeSpellWithMetalsAndWeaponsSortsItemsInCorrectOrder() {
+    // Given
+    final Adventurer adventurer = new Adventurer();
+    adventurer.add(
+        "Leather", "Iron", "Copper",
+        "Marigold", "Mace", "Sword", "Wool", "Gold",
+        "Silk", "Copper", "Copper",
+        "Cherry Blossom",
+        "Axe", "Dagger");
+
+
+    final Backpack backpack = new Backpack();
+    backpack.add("Cherry Blossom");
+    backpack.add("Iron");
+    backpack.add("Leather");
+    backpack.add("Marigold");
+    backpack.add("Silk");
+    backpack.add("Wool");
+
+    final MetalsBag metalsBag = new MetalsBag();
+    metalsBag.add("Copper");
+    metalsBag.add("Copper");
+    metalsBag.add("Copper");
+    metalsBag.add("Gold");
+
+    final WeaponsBag weaponsBag = new WeaponsBag();
+    weaponsBag.add("Axe");
+    weaponsBag.add("Dagger");
+    weaponsBag.add("Mace");
+    weaponsBag.add("Sword");
+
+    adventurer.organizeSpell();
+
+
+    assertThat(adventurer.viewInventory())
+        .containsExactly(
+            backpack,
+            metalsBag,
+            new NoCategoryBag(),
+            weaponsBag,
             new NoCategoryBag2());
   }
 
