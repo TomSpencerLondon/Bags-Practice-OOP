@@ -12,7 +12,6 @@ public class WeaponsBag implements Bag {
   private int position = 4;
   List<String> weaponItems = List.of("Axe", "Dagger", "Mace", "Sword");
 
-
   @Override
   public List<String> items() {
     return items;
@@ -21,16 +20,6 @@ public class WeaponsBag implements Bag {
   @Override
   public void add(String item) {
     items.add(item);
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    return reflectionEquals(this, other);
-  }
-
-  @Override
-  public int hashCode() {
-    return reflectionHashCode(this);
   }
 
   public boolean countOfItemsWithin(int count) {
@@ -48,6 +37,11 @@ public class WeaponsBag implements Bag {
   }
 
   @Override
+  public void emptyBag() {
+    items = new ArrayList<>();
+  }
+
+  @Override
   public int compareTo(Bag bag) {
     return this.position - bag.position();
   }
@@ -55,5 +49,33 @@ public class WeaponsBag implements Bag {
 
   public void sort() {
     Collections.sort(items);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    WeaponsBag that = (WeaponsBag) o;
+
+    if (position != that.position) {
+      return false;
+    }
+    if (!items.equals(that.items)) {
+      return false;
+    }
+    return weaponItems.equals(that.weaponItems);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = items.hashCode();
+    result = 31 * result + position;
+    result = 31 * result + weaponItems.hashCode();
+    return result;
   }
 }

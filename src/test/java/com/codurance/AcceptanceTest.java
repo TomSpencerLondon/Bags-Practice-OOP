@@ -20,7 +20,7 @@ public class AcceptanceTest {
         "Silk", "Copper", "Copper",
         "Cherry Blossom");
 
-    adventurer.organiseSpell();
+    adventurer.organizeSpell();
 
     // Then
     final String displayInventory = adventurer.displayInventory();

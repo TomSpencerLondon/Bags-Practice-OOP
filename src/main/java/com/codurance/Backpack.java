@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Backpack implements Bag {
@@ -33,17 +34,41 @@ public class Backpack implements Bag {
   }
 
   @Override
-  public boolean equals(Object other) {
-    return reflectionEquals(this, other);
+  public void emptyBag() {
+    items = new ArrayList<>();
   }
 
   @Override
-  public int hashCode() {
-    return reflectionHashCode(this);
+  public void sort() {
+    Collections.sort(items);
   }
 
   @Override
   public int compareTo(Bag bag) {
     return this.position - bag.position();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    Backpack backpack = (Backpack) o;
+
+    if (position != backpack.position) {
+      return false;
+    }
+    return items.equals(backpack.items);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = items.hashCode();
+    result = 31 * result + position;
+    return result;
   }
 }

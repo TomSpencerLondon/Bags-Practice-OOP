@@ -18,22 +18,12 @@ public class MetalsBag implements Bag {
 
   @Override
   public List<String> items() {
-    throw new UnsupportedOperationException("Implement me!");
+    return items;
   }
 
   @Override
   public void add(String item) {
     items.add(item);
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    return reflectionEquals(this, other);
-  }
-
-  @Override
-  public int hashCode() {
-    return reflectionHashCode(this);
   }
 
   public boolean countOfItemsWithin(int count) {
@@ -49,7 +39,40 @@ public class MetalsBag implements Bag {
     return metalItems.contains(item);
   }
 
+  @Override
+  public void emptyBag() {
+    items = new ArrayList<>();
+  }
+
   public void sort() {
     Collections.sort(items);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    MetalsBag metalsBag = (MetalsBag) o;
+
+    if (position != metalsBag.position) {
+      return false;
+    }
+    if (!items.equals(metalsBag.items)) {
+      return false;
+    }
+    return metalItems.equals(metalsBag.metalItems);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = position;
+    result = 31 * result + items.hashCode();
+    result = 31 * result + metalItems.hashCode();
+    return result;
   }
 }

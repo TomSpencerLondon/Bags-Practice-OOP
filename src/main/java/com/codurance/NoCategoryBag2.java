@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class NoCategoryBag2 implements Bag {
@@ -22,23 +23,23 @@ public class NoCategoryBag2 implements Bag {
   }
 
   @Override
+  public void emptyBag() {
+    items = new ArrayList<>();
+  }
+
+  @Override
+  public void sort() {
+    Collections.sort(items);
+  }
+
+  @Override
   public List<String> items() {
-    throw new UnsupportedOperationException("Implement me!");
+    return items;
   }
 
   @Override
   public void add(String item) {
     items.add(item);
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    return reflectionEquals(this, other);
-  }
-
-  @Override
-  public int hashCode() {
-    return reflectionHashCode(this);
   }
 
   public boolean countOfItemsWithin(int count) {
@@ -48,5 +49,29 @@ public class NoCategoryBag2 implements Bag {
   @Override
   public int compareTo(Bag bag) {
     return this.position - bag.position();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    NoCategoryBag2 that = (NoCategoryBag2) o;
+
+    if (position != that.position) {
+      return false;
+    }
+    return items.equals(that.items);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = position;
+    result = 31 * result + items.hashCode();
+    return result;
   }
 }

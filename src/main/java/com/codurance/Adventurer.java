@@ -1,11 +1,16 @@
 package com.codurance;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.ListIterator;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Adventurer {
 
@@ -53,6 +58,35 @@ public class Adventurer {
     }
   }
 
-  public void organiseSpell() {
+  public void organizeSpell() {
+    List<Bag> allBags = bags
+        .keySet()
+        .stream().toList();
+
+    List<String> allItems = new ArrayList<>();
+    for (Bag b : allBags) {
+      List<String> items = b.items();
+      allItems.addAll(items);
+    }
+
+    Collections.reverse(allItems);
+
+    for (Bag bag : bags.keySet()) {
+      bag.emptyBag();
+      for (int i = 0; i < allItems.size(); i++) {
+        String item = allItems.get(i);
+        if (bag.include(item) && bag.countOfItemsWithin(4)) {
+          bag.add(item);
+          allItems.remove(i);
+          i--;
+        }
+      }
+    }
+
+    add(allItems.toArray(new String[0]));
+
+    for (Entry<Bag, Integer> entry : bags.entrySet()) {
+      entry.getKey().sort();
+    }
   }
 }
