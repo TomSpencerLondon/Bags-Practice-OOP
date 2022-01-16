@@ -5,12 +5,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class MetalsBag implements Bag {
-  private int position = 2;
+  private Position position;
   List<String> items = new ArrayList<>();
   List<String> metalItems = List.of("Copper", "Gold", "Iron", "Silver");
 
+  public MetalsBag(Position position) {
+    this.position = position;
+  }
+
   public int position() {
-    return position;
+    return position.ordinal();
   }
 
   @Override
@@ -29,7 +33,7 @@ public class MetalsBag implements Bag {
 
   @Override
   public int compareTo(Bag bag) {
-    return this.position - bag.position();
+    return this.position.ordinal() - bag.position();
   }
 
   public boolean include(String item) {
@@ -67,7 +71,7 @@ public class MetalsBag implements Bag {
 
   @Override
   public int hashCode() {
-    int result = position;
+    int result = position.hashCode();
     result = 31 * result + items.hashCode();
     result = 31 * result + metalItems.hashCode();
     return result;

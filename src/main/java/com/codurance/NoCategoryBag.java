@@ -7,10 +7,14 @@ import java.util.List;
 public class NoCategoryBag implements Bag {
 
   List<String> items = new ArrayList<>();
-  private int position = 3;
+  private Position position;
+
+  public NoCategoryBag(Position position) {
+    this.position = position;
+  }
 
   public int position() {
-    return position;
+    return position.ordinal();
   }
 
   @Override
@@ -44,7 +48,7 @@ public class NoCategoryBag implements Bag {
 
   @Override
   public int compareTo(Bag bag) {
-    return this.position - bag.position();
+    return this.position.ordinal() - bag.position();
   }
 
   @Override
@@ -58,16 +62,16 @@ public class NoCategoryBag implements Bag {
 
     NoCategoryBag that = (NoCategoryBag) o;
 
-    if (position != that.position) {
+    if (!items.equals(that.items)) {
       return false;
     }
-    return items.equals(that.items);
+    return position == that.position;
   }
 
   @Override
   public int hashCode() {
     int result = items.hashCode();
-    result = 31 * result + position;
+    result = 31 * result + position.hashCode();
     return result;
   }
 }

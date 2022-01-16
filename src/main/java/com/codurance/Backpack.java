@@ -9,7 +9,11 @@ public class Backpack implements Bag {
   public void add(String item) {
     items.add(item);
   }
-  private int position = 1;
+  private Position position;
+
+  public Backpack(Position position) {
+    this.position = position;
+  }
 
   @Override
   public List<String> items() {
@@ -22,7 +26,7 @@ public class Backpack implements Bag {
 
   @Override
   public int position() {
-    return this.position;
+    return this.position.ordinal();
   }
 
   @Override
@@ -42,7 +46,7 @@ public class Backpack implements Bag {
 
   @Override
   public int compareTo(Bag bag) {
-    return this.position - bag.position();
+    return this.position.ordinal() - bag.position();
   }
 
   @Override
@@ -56,16 +60,16 @@ public class Backpack implements Bag {
 
     Backpack backpack = (Backpack) o;
 
-    if (position != backpack.position) {
+    if (!items.equals(backpack.items)) {
       return false;
     }
-    return items.equals(backpack.items);
+    return position == backpack.position;
   }
 
   @Override
   public int hashCode() {
     int result = items.hashCode();
-    result = 31 * result + position;
+    result = 31 * result + position.hashCode();
     return result;
   }
 }

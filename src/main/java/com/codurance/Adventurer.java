@@ -16,14 +16,14 @@ public class Adventurer {
   private MetalsBag metalsBag;
   private NoCategoryBag noCategoryBag1;
   private WeaponsBag weaponsBag;
-  private NoCategoryBag2 noCategoryBag2;
+  private NoCategoryBag noCategoryBag2;
 
   public Adventurer() {
-    this.backpack = new Backpack();
-    this.metalsBag = new MetalsBag();
-    this.noCategoryBag1 = new NoCategoryBag();
-    this.noCategoryBag2 = new NoCategoryBag2();
-    this.weaponsBag = new WeaponsBag();
+    this.backpack = BagFactory.createBackpack();
+    this.metalsBag = BagFactory.createMetalsBag();
+    this.noCategoryBag1 = BagFactory.createNoCategoryBag();
+    this.weaponsBag = BagFactory.createWeaponsBag();
+    this.noCategoryBag2 = BagFactory.createNoCategoryBag2();
     this.bags = new TreeMap<>();
     bags.put(backpack, 8);
     bags.put(metalsBag, 4);

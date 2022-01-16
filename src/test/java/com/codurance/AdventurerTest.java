@@ -29,7 +29,7 @@ public class AdventurerTest {
     assertThat(inventory.get(3))
         .isInstanceOf(WeaponsBag.class);
     assertThat(inventory.get(4))
-        .isInstanceOf(NoCategoryBag2.class);
+        .isInstanceOf(NoCategoryBag.class);
   }
 
   @Test
@@ -52,11 +52,11 @@ public class AdventurerTest {
 
     final Backpack backpack = createBackPack();
 
-    final MetalsBag metalsBag = new MetalsBag();
+    final MetalsBag metalsBag = new MetalsBag(Position.SECOND);
     metalsBag.add("Copper");
     metalsBag.add("Cherry Blossom");
 
-    List<Bag> result = List.of(backpack, metalsBag, new NoCategoryBag(), new WeaponsBag(), new NoCategoryBag2());
+    List<Bag> result = List.of(backpack, metalsBag, new NoCategoryBag(Position.THIRD), new WeaponsBag(Position.FOURTH), new NoCategoryBag(Position.FIFTH));
 
     // When
     final List<Bag> inventory = adventurer.viewInventory();
@@ -79,19 +79,19 @@ public class AdventurerTest {
 
     final Backpack backpack = createBackPack();
 
-    final MetalsBag metalsBag = new MetalsBag();
+    final MetalsBag metalsBag = new MetalsBag(Position.SECOND);
     metalsBag.add("Copper");
     metalsBag.add("Cherry Blossom");
     metalsBag.add("Marigold");
     metalsBag.add("Rose");
 
-    final NoCategoryBag noCategoryBag = new NoCategoryBag();
+    final NoCategoryBag noCategoryBag = new NoCategoryBag(Position.THIRD);
     noCategoryBag.add("Seaweed");
 
     List<Bag> result = List.of(
         backpack, metalsBag,
-        noCategoryBag, new WeaponsBag(),
-        new NoCategoryBag2());
+        noCategoryBag, new WeaponsBag(Position.FOURTH),
+        new NoCategoryBag(Position.FIFTH));
 
     // When
     final List<Bag> inventory = adventurer.viewInventory();
@@ -113,7 +113,7 @@ public class AdventurerTest {
         "Cherry Blossom");
 
     
-    final Backpack backpack = new Backpack();
+    final Backpack backpack = new Backpack(Position.FIRST);
     backpack.add("Cherry Blossom");
     backpack.add("Iron");
     backpack.add("Leather");
@@ -121,7 +121,7 @@ public class AdventurerTest {
     backpack.add("Silk");
     backpack.add("Wool");
 
-    final MetalsBag metalsBag = new MetalsBag();
+    final MetalsBag metalsBag = new MetalsBag(Position.SECOND);
     metalsBag.add("Copper");
     metalsBag.add("Copper");
     metalsBag.add("Copper");
@@ -135,9 +135,9 @@ public class AdventurerTest {
         .containsExactly(
             backpack,
             metalsBag,
-            new NoCategoryBag(),
-            new WeaponsBag(),
-            new NoCategoryBag2());
+            new NoCategoryBag(Position.THIRD),
+            new WeaponsBag(Position.FOURTH),
+            new NoCategoryBag(Position.FIFTH));
   }
 
   @Test
@@ -152,7 +152,7 @@ public class AdventurerTest {
         "Axe", "Dagger");
 
 
-    final Backpack backpack = new Backpack();
+    final Backpack backpack = new Backpack(Position.FIRST);
     backpack.add("Cherry Blossom");
     backpack.add("Iron");
     backpack.add("Leather");
@@ -160,13 +160,13 @@ public class AdventurerTest {
     backpack.add("Silk");
     backpack.add("Wool");
 
-    final MetalsBag metalsBag = new MetalsBag();
+    final MetalsBag metalsBag = new MetalsBag(Position.SECOND);
     metalsBag.add("Copper");
     metalsBag.add("Copper");
     metalsBag.add("Copper");
     metalsBag.add("Gold");
 
-    final WeaponsBag weaponsBag = new WeaponsBag();
+    final WeaponsBag weaponsBag = new WeaponsBag(Position.FOURTH);
     weaponsBag.add("Axe");
     weaponsBag.add("Dagger");
     weaponsBag.add("Mace");
@@ -179,13 +179,13 @@ public class AdventurerTest {
         .containsExactly(
             backpack,
             metalsBag,
-            new NoCategoryBag(),
+            new NoCategoryBag(Position.THIRD),
             weaponsBag,
-            new NoCategoryBag2());
+            new NoCategoryBag(Position.FIFTH));
   }
 
   private Backpack createBackPack() {
-    final Backpack backpack = new Backpack();
+    final Backpack backpack = new Backpack(Position.FIRST);
     backpack.add("Leather");
     backpack.add("Iron");
     backpack.add("Copper");

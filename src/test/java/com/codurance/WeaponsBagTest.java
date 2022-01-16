@@ -1,9 +1,7 @@
 package com.codurance;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class WeaponsBagTest {
@@ -12,7 +10,7 @@ class WeaponsBagTest {
   void disallowIncorrectItems() {
     String item = "Cherry Blossom";
 
-    final WeaponsBag weaponsBag = new WeaponsBag();
+    final WeaponsBag weaponsBag = new WeaponsBag(Position.FOURTH);
     final boolean result = weaponsBag.include(item);
 
     assertThat(result)
@@ -23,7 +21,7 @@ class WeaponsBagTest {
   void allowIncludedItems() {
     String item = "Axe";
 
-    final WeaponsBag weaponsBag = new WeaponsBag();
+    final WeaponsBag weaponsBag = new WeaponsBag(Position.FOURTH);
     final boolean result = weaponsBag.include(item);
 
     assertThat(result)
@@ -32,7 +30,7 @@ class WeaponsBagTest {
 
   @Test
   void sortInAlphabeticOrder() {
-    final WeaponsBag weaponsBag = new WeaponsBag();
+    final WeaponsBag weaponsBag = new WeaponsBag(Position.FOURTH);
     weaponsBag.add("Axe");
     weaponsBag.add("Dagger");
     weaponsBag.add("Mace");

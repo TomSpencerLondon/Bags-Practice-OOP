@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface Bag extends Comparable<Bag> {
   List<String> items();
-  public void add(String item);
-  public boolean countOfItemsWithin(int count);
-  public int position();
-  public boolean include(String item);
-  public void emptyBag();
-  public void sort();
+  void add(String item);
+  boolean countOfItemsWithin(int count);
+  int position();
+  boolean include(String item);
+  void emptyBag();
+  void sort();
 }

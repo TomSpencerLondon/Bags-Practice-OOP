@@ -6,8 +6,12 @@ import java.util.List;
 
 public class WeaponsBag implements Bag {
   List<String> items = new ArrayList<>();
-  private int position = 4;
+  private Position position;
   List<String> weaponItems = List.of("Axe", "Dagger", "Mace", "Sword");
+
+  public WeaponsBag(Position position) {
+    this.position = position;
+  }
 
   @Override
   public List<String> items() {
@@ -25,7 +29,7 @@ public class WeaponsBag implements Bag {
 
   @Override
   public int position() {
-    return this.position;
+    return this.position.ordinal();
   }
 
   @Override
@@ -40,7 +44,7 @@ public class WeaponsBag implements Bag {
 
   @Override
   public int compareTo(Bag bag) {
-    return this.position - bag.position();
+    return this.position.ordinal() - bag.position();
   }
 
 
@@ -59,10 +63,10 @@ public class WeaponsBag implements Bag {
 
     WeaponsBag that = (WeaponsBag) o;
 
-    if (position != that.position) {
+    if (!items.equals(that.items)) {
       return false;
     }
-    if (!items.equals(that.items)) {
+    if (position != that.position) {
       return false;
     }
     return weaponItems.equals(that.weaponItems);
@@ -71,7 +75,7 @@ public class WeaponsBag implements Bag {
   @Override
   public int hashCode() {
     int result = items.hashCode();
-    result = 31 * result + position;
+    result = 31 * result + position.hashCode();
     result = 31 * result + weaponItems.hashCode();
     return result;
   }
