@@ -1,10 +1,13 @@
 package com.codurance;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -42,7 +45,15 @@ public class Adventurer {
   }
 
   public String displayInventory() {
-    throw new UnsupportedOperationException("Implement me!");
+    Gson gsonObj = new Gson();
+    Map<String, List<String>> result = new HashMap<>();
+    result.put("backpack", backpack.items());
+    result.put("bag_with_metals_category", metalsBag.items());
+    result.put("bag_with_no_category", noCategoryBag1.items());
+    result.put("bag_with_weapons_category", weaponsBag.items());
+    result.put("second_bag_with_no_category", noCategoryBag2.items());
+
+    return gsonObj.toJson(result);
   }
 
   public void add(String... items) {
