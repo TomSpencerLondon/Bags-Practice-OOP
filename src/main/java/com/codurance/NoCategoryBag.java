@@ -1,8 +1,5 @@
 package com.codurance;
 
-import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
