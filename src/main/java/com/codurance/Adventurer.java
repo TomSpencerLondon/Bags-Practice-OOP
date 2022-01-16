@@ -57,10 +57,14 @@ public class Adventurer {
   public void add(String... items) {
     final Iterator<String> iterator = Arrays.stream(items).iterator();
     for (Entry<Bag, Integer> entry : bags.entrySet()) {
-      while (entry.getKey().countOfItemsWithin(entry.getValue()) && iterator.hasNext()) {
+      while (isWithinCountOfItemsFor(entry) && iterator.hasNext()) {
         entry.getKey().add(iterator.next());
       }
     }
+  }
+
+  private boolean isWithinCountOfItemsFor(Entry<Bag, Integer> entry) {
+    return entry.getKey().countOfItemsWithin(entry.getValue());
   }
 
   public void organizeSpell() {
