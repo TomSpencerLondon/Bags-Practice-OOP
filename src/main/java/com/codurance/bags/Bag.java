@@ -1,4 +1,4 @@
-package com.codurance;
+package com.codurance.bags;
 
 import java.util.List;
 

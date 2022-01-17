@@ -2,6 +2,7 @@ package com.codurance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.codurance.bags.WeaponsBag;
 import org.junit.jupiter.api.Test;
 
 class WeaponsBagTest {

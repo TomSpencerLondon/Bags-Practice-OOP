@@ -2,6 +2,11 @@ package com.codurance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.codurance.bags.Backpack;
+import com.codurance.bags.Bag;
+import com.codurance.bags.MetalsBag;
+import com.codurance.bags.NoCategoryBag;
+import com.codurance.bags.WeaponsBag;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

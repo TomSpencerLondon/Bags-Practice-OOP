@@ -1,5 +1,11 @@
 package com.codurance;
 
+import com.codurance.bags.Backpack;
+import com.codurance.bags.Bag;
+import com.codurance.bags.BagFactory;
+import com.codurance.bags.MetalsBag;
+import com.codurance.bags.NoCategoryBag;
+import com.codurance.bags.WeaponsBag;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;

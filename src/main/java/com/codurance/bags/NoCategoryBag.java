@@ -1,5 +1,6 @@
-package com.codurance;
+package com.codurance.bags;
 
+import com.codurance.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
