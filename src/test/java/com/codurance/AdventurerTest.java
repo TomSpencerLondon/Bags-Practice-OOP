@@ -128,7 +128,7 @@ public class AdventurerTest {
     metalsBag.add("Gold");
 
 
-    adventurer.organizeSpell();
+    Organizer.organizeSpell(adventurer);
 
 
     assertThat(adventurer.viewInventory())
@@ -172,7 +172,7 @@ public class AdventurerTest {
     weaponsBag.add("Mace");
     weaponsBag.add("Sword");
 
-    adventurer.organizeSpell();
+    Organizer.organizeSpell(adventurer);
 
 
     assertThat(adventurer.viewInventory())

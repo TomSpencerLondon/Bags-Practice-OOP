@@ -20,7 +20,7 @@ public class AcceptanceTest {
         "Silk", "Copper", "Copper",
         "Cherry Blossom");
 
-    adventurer.organizeSpell();
+    Organizer.organizeSpell(adventurer);
 
     // Then
     final String displayInventory = JsonAdventurer.displayInventory(adventurer);
