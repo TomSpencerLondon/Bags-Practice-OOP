@@ -15,10 +15,6 @@ public class Adventurer {
   private WeaponsBag weaponsBag;
   private NoCategoryBag noCategoryBag2;
 
-  public TreeMap<Bag, Integer> bags() {
-    return bags;
-  }
-
   public Backpack backpack() {
     return backpack;
   }
