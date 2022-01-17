@@ -7,21 +7,21 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 public class Organizer {
-  private static TreeMap<Bag, Integer> organizer;
+  private static TreeMap<Bag, Integer> organization;
 
   public Organizer(Adventurer adventurer) {
-    this.organizer = createBagsOrganizer(adventurer);
+    this.organization = createOrganization(adventurer);
   }
 
   public static void organizeSpell(Adventurer adventurer) {
-    final SortSpell sortSpell = new SortSpell(organizer);
+    final SortSpell sortSpell = new SortSpell(organization);
     List<String> reversedItems = sortSpell.reversedItems();
     sortSpell.sortWeaponsAndMetals(reversedItems);
     adventurer.add(reversedItems.toArray(new String[0]));
-    organizer = sortSpell.sortItems();
+    organization = sortSpell.sortItems();
   }
 
-  private TreeMap<Bag, Integer> createBagsOrganizer(Adventurer adventurer) {
+  private TreeMap<Bag, Integer> createOrganization(Adventurer adventurer) {
     TreeMap<Bag, Integer> map = new TreeMap<>();
     map.put(adventurer.backpack(), 8);
     map.put(adventurer.metalsBag(), 4);
@@ -33,7 +33,7 @@ public class Organizer {
   }
 
   public static void organize(Iterator<String> iterator, Adventurer adventurer) {
-    for (Entry<Bag, Integer> entry : organizer.entrySet()) {
+    for (Entry<Bag, Integer> entry : organization.entrySet()) {
       while (adventurer.isWithinCountOfItemsFor(entry) && iterator.hasNext()) {
         entry.getKey().add(iterator.next());
       }
