@@ -1,11 +1,8 @@
 package com.codurance;
 
-import com.google.gson.Gson;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -17,6 +14,30 @@ public class Adventurer {
   private NoCategoryBag noCategoryBag1;
   private WeaponsBag weaponsBag;
   private NoCategoryBag noCategoryBag2;
+
+  public TreeMap<Bag, Integer> bags() {
+    return bags;
+  }
+
+  public Backpack backpack() {
+    return backpack;
+  }
+
+  public MetalsBag metalsBag() {
+    return metalsBag;
+  }
+
+  public NoCategoryBag noCategoryBag1() {
+    return noCategoryBag1;
+  }
+
+  public WeaponsBag weaponsBag() {
+    return weaponsBag;
+  }
+
+  public NoCategoryBag noCategoryBag2() {
+    return noCategoryBag2;
+  }
 
   public Adventurer() {
     this.backpack = BagFactory.createBackpack();
@@ -40,18 +61,6 @@ public class Adventurer {
         weaponsBag,
         noCategoryBag2
     );
-  }
-
-  public String displayInventory() {
-    Gson gsonObj = new Gson();
-    Map<String, List<String>> result = new HashMap<>();
-    result.put("backpack", backpack.items());
-    result.put("bag_with_metals_category", metalsBag.items());
-    result.put("bag_with_no_category", noCategoryBag1.items());
-    result.put("bag_with_weapons_category", weaponsBag.items());
-    result.put("second_bag_with_no_category", noCategoryBag2.items());
-
-    return gsonObj.toJson(result);
   }
 
   public void add(String... items) {

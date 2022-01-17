@@ -23,7 +23,7 @@ public class AcceptanceTest {
     adventurer.organizeSpell();
 
     // Then
-    final String displayInventory = adventurer.displayInventory();
+    final String displayInventory = JsonAdventurer.displayInventory(adventurer);
     final String expectedResult = expectedResult();
 
     assertThat(displayInventory)
