@@ -16,14 +16,22 @@ public class SortSpell {
 
   public void sortWeaponsAndMetals(List<String> reversedItems) {
     for (Bag bag : bags.keySet()) {
-      bag.emptyBag();
-      for (int i = 0; i < reversedItems.size(); i++) {
-        String item = reversedItems.get(i);
-        if (bag.include(item) && bag.countOfItemsWithin(4)) {
-          bag.add(item);
-          reversedItems.remove(i);
-          i--;
-        }
+      sort(reversedItems, bag);
+    }
+  }
+
+  private void sort(List<String> reversedItems, Bag bag) {
+    bag.emptyBag();
+    sortItemsInBags(reversedItems, bag);
+  }
+
+  private void sortItemsInBags(List<String> reversedItems, Bag bag) {
+    for (int i = 0; i < reversedItems.size(); i++) {
+      String item = reversedItems.get(i);
+      if (bag.include(item) && bag.countOfItemsWithin(4)) {
+        bag.add(item);
+        reversedItems.remove(i);
+        i--;
       }
     }
   }
