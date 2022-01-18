@@ -1,17 +1,20 @@
-package com.codurance.bags;
+package com.codurance.domain.bags;
 
-import com.codurance.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class WeaponsBag implements Bag {
-  List<String> items = new ArrayList<>();
+public class MetalsBag implements Bag {
   private Position position;
-  List<String> weaponItems = List.of("Axe", "Dagger", "Mace", "Sword");
+  List<String> items = new ArrayList<>();
+  List<String> metalItems = List.of("Copper", "Gold", "Iron", "Silver");
 
-  public WeaponsBag(Position position) {
+  public MetalsBag(Position position) {
     this.position = position;
+  }
+
+  public int position() {
+    return position.ordinal();
   }
 
   @Override
@@ -29,25 +32,18 @@ public class WeaponsBag implements Bag {
   }
 
   @Override
-  public int position() {
-    return this.position.ordinal();
+  public int compareTo(Bag bag) {
+    return this.position.ordinal() - bag.position();
   }
 
-  @Override
   public boolean include(String item) {
-    return weaponItems.contains(item);
+    return metalItems.contains(item);
   }
 
   @Override
   public void emptyBag() {
     items = new ArrayList<>();
   }
-
-  @Override
-  public int compareTo(Bag bag) {
-    return this.position.ordinal() - bag.position();
-  }
-
 
   public void sort() {
     Collections.sort(items);
@@ -62,22 +58,22 @@ public class WeaponsBag implements Bag {
       return false;
     }
 
-    WeaponsBag that = (WeaponsBag) o;
+    MetalsBag metalsBag = (MetalsBag) o;
 
-    if (!items.equals(that.items)) {
+    if (position != metalsBag.position) {
       return false;
     }
-    if (position != that.position) {
+    if (!items.equals(metalsBag.items)) {
       return false;
     }
-    return weaponItems.equals(that.weaponItems);
+    return metalItems.equals(metalsBag.metalItems);
   }
 
   @Override
   public int hashCode() {
-    int result = items.hashCode();
-    result = 31 * result + position.hashCode();
-    result = 31 * result + weaponItems.hashCode();
+    int result = position.hashCode();
+    result = 31 * result + items.hashCode();
+    result = 31 * result + metalItems.hashCode();
     return result;
   }
 }

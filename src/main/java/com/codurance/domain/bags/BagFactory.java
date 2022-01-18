@@ -1,6 +1,4 @@
-package com.codurance.bags;
-
-import com.codurance.Position;
+package com.codurance.domain.bags;
 
 public class BagFactory {
 

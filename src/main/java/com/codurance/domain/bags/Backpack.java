@@ -1,21 +1,32 @@
-package com.codurance.bags;
+package com.codurance.domain.bags;
 
-import com.codurance.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class NoCategoryBag implements Bag {
-
+public class Backpack implements Bag {
   List<String> items = new ArrayList<>();
+  public void add(String item) {
+    items.add(item);
+  }
   private Position position;
 
-  public NoCategoryBag(Position position) {
+  public Backpack(Position position) {
     this.position = position;
   }
 
+  @Override
+  public List<String> items() {
+    return items;
+  }
+
+  public boolean countOfItemsWithin(int count) {
+    return items.size() < count;
+  }
+
+  @Override
   public int position() {
-    return position.ordinal();
+    return this.position.ordinal();
   }
 
   @Override
@@ -34,20 +45,6 @@ public class NoCategoryBag implements Bag {
   }
 
   @Override
-  public List<String> items() {
-    return items;
-  }
-
-  @Override
-  public void add(String item) {
-    items.add(item);
-  }
-
-  public boolean countOfItemsWithin(int count) {
-    return items.size() < count;
-  }
-
-  @Override
   public int compareTo(Bag bag) {
     return this.position.ordinal() - bag.position();
   }
@@ -61,12 +58,12 @@ public class NoCategoryBag implements Bag {
       return false;
     }
 
-    NoCategoryBag that = (NoCategoryBag) o;
+    Backpack backpack = (Backpack) o;
 
-    if (!items.equals(that.items)) {
+    if (!items.equals(backpack.items)) {
       return false;
     }
-    return position == that.position;
+    return position == backpack.position;
   }
 
   @Override

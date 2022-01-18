@@ -2,11 +2,14 @@ package com.codurance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.codurance.bags.Backpack;
-import com.codurance.bags.Bag;
-import com.codurance.bags.MetalsBag;
-import com.codurance.bags.NoCategoryBag;
-import com.codurance.bags.WeaponsBag;
+import com.codurance.domain.bags.Adventurer;
+import com.codurance.domain.bags.Backpack;
+import com.codurance.domain.bags.Bag;
+import com.codurance.domain.bags.MetalsBag;
+import com.codurance.domain.bags.NoCategoryBag;
+import com.codurance.domain.bags.Organizer;
+import com.codurance.domain.bags.Position;
+import com.codurance.domain.bags.WeaponsBag;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

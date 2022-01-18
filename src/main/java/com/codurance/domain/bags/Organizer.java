@@ -1,6 +1,5 @@
-package com.codurance;
+package com.codurance.domain.bags;
 
-import com.codurance.bags.Bag;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;

@@ -2,6 +2,9 @@ package com.codurance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.codurance.adapter.out.json.JsonAdventurer;
+import com.codurance.domain.bags.Adventurer;
+import com.codurance.domain.bags.Organizer;
 import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.List;

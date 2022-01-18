@@ -1,5 +1,6 @@
-package com.codurance;
+package com.codurance.adapter.out.json;
 
+import com.codurance.domain.bags.Adventurer;
 import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.List;

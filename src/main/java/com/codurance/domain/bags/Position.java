@@ -1,4 +1,4 @@
-package com.codurance;
+package com.codurance.domain.bags;
 
 public enum Position {
   FIRST,

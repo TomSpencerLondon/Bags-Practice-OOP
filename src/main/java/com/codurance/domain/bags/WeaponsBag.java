@@ -1,24 +1,26 @@
-package com.codurance.bags;
+package com.codurance.domain.bags;
 
-import com.codurance.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Backpack implements Bag {
+public class WeaponsBag implements Bag {
   List<String> items = new ArrayList<>();
-  public void add(String item) {
-    items.add(item);
-  }
   private Position position;
+  List<String> weaponItems = List.of("Axe", "Dagger", "Mace", "Sword");
 
-  public Backpack(Position position) {
+  public WeaponsBag(Position position) {
     this.position = position;
   }
 
   @Override
   public List<String> items() {
     return items;
+  }
+
+  @Override
+  public void add(String item) {
+    items.add(item);
   }
 
   public boolean countOfItemsWithin(int count) {
@@ -32,7 +34,7 @@ public class Backpack implements Bag {
 
   @Override
   public boolean include(String item) {
-    return false;
+    return weaponItems.contains(item);
   }
 
   @Override
@@ -41,13 +43,13 @@ public class Backpack implements Bag {
   }
 
   @Override
-  public void sort() {
-    Collections.sort(items);
-  }
-
-  @Override
   public int compareTo(Bag bag) {
     return this.position.ordinal() - bag.position();
+  }
+
+
+  public void sort() {
+    Collections.sort(items);
   }
 
   @Override
@@ -59,18 +61,22 @@ public class Backpack implements Bag {
       return false;
     }
 
-    Backpack backpack = (Backpack) o;
+    WeaponsBag that = (WeaponsBag) o;
 
-    if (!items.equals(backpack.items)) {
+    if (!items.equals(that.items)) {
       return false;
     }
-    return position == backpack.position;
+    if (position != that.position) {
+      return false;
+    }
+    return weaponItems.equals(that.weaponItems);
   }
 
   @Override
   public int hashCode() {
     int result = items.hashCode();
     result = 31 * result + position.hashCode();
+    result = 31 * result + weaponItems.hashCode();
     return result;
   }
 }

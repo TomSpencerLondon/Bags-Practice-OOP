@@ -1,21 +1,35 @@
-package com.codurance.bags;
+package com.codurance.domain.bags;
 
-import com.codurance.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MetalsBag implements Bag {
-  private Position position;
-  List<String> items = new ArrayList<>();
-  List<String> metalItems = List.of("Copper", "Gold", "Iron", "Silver");
+public class NoCategoryBag implements Bag {
 
-  public MetalsBag(Position position) {
+  List<String> items = new ArrayList<>();
+  private Position position;
+
+  public NoCategoryBag(Position position) {
     this.position = position;
   }
 
   public int position() {
     return position.ordinal();
+  }
+
+  @Override
+  public boolean include(String item) {
+    return false;
+  }
+
+  @Override
+  public void emptyBag() {
+    items = new ArrayList<>();
+  }
+
+  @Override
+  public void sort() {
+    Collections.sort(items);
   }
 
   @Override
@@ -37,19 +51,6 @@ public class MetalsBag implements Bag {
     return this.position.ordinal() - bag.position();
   }
 
-  public boolean include(String item) {
-    return metalItems.contains(item);
-  }
-
-  @Override
-  public void emptyBag() {
-    items = new ArrayList<>();
-  }
-
-  public void sort() {
-    Collections.sort(items);
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -59,22 +60,18 @@ public class MetalsBag implements Bag {
       return false;
     }
 
-    MetalsBag metalsBag = (MetalsBag) o;
+    NoCategoryBag that = (NoCategoryBag) o;
 
-    if (position != metalsBag.position) {
+    if (!items.equals(that.items)) {
       return false;
     }
-    if (!items.equals(metalsBag.items)) {
-      return false;
-    }
-    return metalItems.equals(metalsBag.metalItems);
+    return position == that.position;
   }
 
   @Override
   public int hashCode() {
-    int result = position.hashCode();
-    result = 31 * result + items.hashCode();
-    result = 31 * result + metalItems.hashCode();
+    int result = items.hashCode();
+    result = 31 * result + position.hashCode();
     return result;
   }
 }
