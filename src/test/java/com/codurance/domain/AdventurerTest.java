@@ -1,4 +1,4 @@
-package com.codurance;
+package com.codurance.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
